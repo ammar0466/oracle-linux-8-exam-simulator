@@ -1,0 +1,2328 @@
+// Oracle Linux 8 Exam Simulator (1Z0-106) Master Dataset
+window.QUIZ_DATA = [
+  {
+    "id": 1,
+    "question": "Which two statements are true about the GRUB 2 bootloader?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_1_a",
+        "text": "Its configuration can be changed bu editing /etc/default/grub2 and executing grub2-mkconfig to regenerate grub2.cfg",
+        "is_correct": false
+      },
+      {
+        "id": "opt_1_b",
+        "text": "It can load many free operating systems directly and chain-load property operating systems.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_1_c",
+        "text": "Its configuration file is /boot/grub2/grub2.cfg and BIOS-based systems.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_1_d",
+        "text": "It understands file systems and kernel executable formats, allowing the loading of operating systems without recording the on-disk physical location of the kernel.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_1_e",
+        "text": "Its configuration file is /boot/efi/EFI/redhat/grub2.cfg on UEFI-based systems.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_1_b",
+      "opt_1_d"
+    ],
+    "explanation": "GRUB 2 can directly load free operating systems (Linux kernels) and chain-load proprietary OS bootloaders (B). It also understands filesystems and kernel executable formats directly, eliminating the need to hardcode raw on-disk sector offsets (D)."
+  },
+  {
+    "id": 2,
+    "question": "Which mdadm command creates a RAID-1 device consisting of two block volumes and one spare device?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_2_a",
+        "text": "mdadm --create /dev/md0 --level=5 --raid-devices=2 /dev/xvdd1 /dev/xvdd2 --spare-devices=1 /dev/xvdd3",
+        "is_correct": false
+      },
+      {
+        "id": "opt_2_b",
+        "text": "mdadm --create /dev/md0 --level=1 --raid-devices =2 /dev/xvdd1 /dev/xvdd2",
+        "is_correct": false
+      },
+      {
+        "id": "opt_2_c",
+        "text": "mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/xvdd1 /dev/xvdd2 --spare-devices=1 /dev/xvdd3",
+        "is_correct": true
+      },
+      {
+        "id": "opt_2_d",
+        "text": "mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/xvdd1 /dev/xvdd2 --spare-devices=1 /dev/xvdd3",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_2_c"
+    ],
+    "explanation": "To create a RAID-1 device with 2 active volumes and 1 spare device using mdadm, the correct syntax is: mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/xvdd1 /dev/xvdd2 --spare-devices=1 /dev/xvdd3."
+  },
+  {
+    "id": 3,
+    "question": "Examine this command and output:\n\n```\n# mdadm --detail /dev/md0\n/dev/md0:\nVersion : 1.2\nCreation Time : Tue Oct 27 16:53:38 2020\nRaid Level : raid5\nArray Size : 207872 (203.03 MiB 212.86 MB)\nUsed Dev Size : 103936 (101.52 MiB 106.43 MB)\nRaid Devices : 3\nTotal Devices : 3\nPersistence : Superblock is persistent\nUpdate Time : Tue Oct 27 16:53:38 2020\nState : clean, degraded, recovering\nActive Devices : 2\nWorking Devices : 3\nFailed Devices : 0\nSpare Devices : 1\nLayout : left-symmetric\nChunk Size : 512K\nRebuild Status : 60% complete\nName : ol8.example.com:0  (local to host ol8.example.com)\nUUID : 70f8bd2f:0505d92d:750a781e:c224508d\nEvents : 66\nNumber  Major  Minor  RaidDevice  State\n0       8  49  0  active sync  /dev/sdd1\n1       8  65  1  active sync  /dev/sde1\n3       8  81  2  spare rebuilding  /dev/sdf1\n```\n\nWhich two are true ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_3_a",
+        "text": "A RAID device failed and has returned to normal operating status.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_3_b",
+        "text": "The RAID set read and write performance is currently sub-optimal.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_3_c",
+        "text": "A new RAID device was just added to replace a failed one.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_3_d",
+        "text": "An extra device was added to this RAID set to increase its size",
+        "is_correct": false
+      },
+      {
+        "id": "opt_3_e",
+        "text": "Only write performance is currently sub-optimal on this RAID set.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_3_b",
+      "opt_3_c"
+    ],
+    "explanation": "The output shows 'State: clean, degraded, recovering' and 'spare rebuilding /dev/sdf1'. This indicates a failed drive was replaced by /dev/sdf1 (C), and while an array is in degraded/recovering state, both read and write performance are sub-optimal (B)."
+  },
+  {
+    "id": 4,
+    "question": "Which two statements are true about naming network interfaces ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_4_a",
+        "text": "Consistent device naming is enabled by default",
+        "is_correct": true
+      },
+      {
+        "id": "opt_4_b",
+        "text": "The udev device manager generates device names based on a series of schemes.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_4_c",
+        "text": "The udev device manager uses a random number if all other schemes fail.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_4_d",
+        "text": "Device names cannot be manually configured.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_4_e",
+        "text": "Device names incorporate the physical location and hot plug slot index number.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_4_a",
+      "opt_4_b"
+    ],
+    "explanation": "Consistent (predictable) device naming is enabled by default in Oracle Linux 8 (A). The udev device manager generates device names using a series of naming schemes based on firmware, PCI topology, and MAC addresses (B)."
+  },
+  {
+    "id": 5,
+    "question": "Which two default user account settings are contained in /etc/login.defs ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_5_a",
+        "text": "decryption method used to decrypt passwords",
+        "is_correct": false
+      },
+      {
+        "id": "opt_5_b",
+        "text": "user hashed passwords",
+        "is_correct": false
+      },
+      {
+        "id": "opt_5_c",
+        "text": "group hashed passwords",
+        "is_correct": false
+      },
+      {
+        "id": "opt_5_d",
+        "text": "password aging controls",
+        "is_correct": true
+      },
+      {
+        "id": "opt_5_e",
+        "text": "encryption method used to encrypt passwords",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_5_d",
+      "opt_5_e"
+    ],
+    "explanation": "/etc/login.defs defines site-specific configuration for shadow password suite, including password aging controls (PASS_MAX_DAYS, PASS_MIN_DAYS, PASS_WARN_AGE) (D) and encryption methods (ENCRYPT_METHOD SHA512) (E). Hashed passwords themselves are stored in /etc/shadow."
+  },
+  {
+    "id": 6,
+    "question": "Examine the contents of the /etc/exports file on an NFS server:\n\n```\n/status  *(rw,async)\n/usr/shared/tools *(all_squash,anonuid=501,anongid=501,ro)\n/projects/big *(ro) pteam(rw)\n```\n\nThe NFS server exports /usr/shared/tools to NFS clients.\n\nWhich statement is true ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_6_a",
+        "text": "All clients except those with a local 501 user cand mount /usr/shared/tools read-only",
+        "is_correct": false
+      },
+      {
+        "id": "opt_6_b",
+        "text": "All clients can mount /usr/shared/tools read-only and NFS explicitly maps all requests to the UID and GID of the privileged local 501 user.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_6_c",
+        "text": "All clients can mount /usr/shared/tools read-only and NFS explicitly maps all requests to the UID and GID of the unprivileged local 501 user.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_6_d",
+        "text": "All clients can mount /usr/shared/tools read-only and all-squash overrides explicit mapping of the UID and GID defined by anonuid and anongid",
+        "is_correct": false
+      },
+      {
+        "id": "opt_6_e",
+        "text": "All clients can mount /usr/shared/tools read-only and NFS ignores the directives defined by the anonuid and anongid options.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_6_c"
+    ],
+    "explanation": "In /etc/exports, all_squash maps all client UIDs/GIDs to the anonymous user, and anonuid=501,anongid=501 explicitly assigns those requests to UID 501 / GID 501 of the local unprivileged user on the NFS server with read-only access (C)."
+  },
+  {
+    "id": 7,
+    "question": "You must add an additional swap device and you add this entry to /etc/fstab:\n\n```\n/.swapfile    none    swap  defaults 0 0\n```\n\nExamine these commands and output:\n\n```\n# dd if=/dev/zero of=/.swapfile bs=1024 count=1048576\n1048576+0 records in\n1048576+0 records out\n1073741824 bytes (1.1 GB,  1.0 GiB) copied,  4.32488s , 248 MB/s\n# swapon -a\nswapon: /.swapfile: insecure permissions 0644, 0600 suggested.\nswapon: /.swapfile: read swap header failed\n```\n\nWhich two actions must you perform to add this swap device ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_7_a",
+        "text": "Initialize the /.swapfile file by using the mkswap command.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_7_b",
+        "text": "Execute swapon --all.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_7_c",
+        "text": "Change default to user in the /etc/fstab entry",
+        "is_correct": false
+      },
+      {
+        "id": "opt_7_d",
+        "text": "Assign a label to the /.swapfile file by using the swaplabel command.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_7_e",
+        "text": "Execute swapon -L swapfile /.swapfile after adding a label",
+        "is_correct": false
+      },
+      {
+        "id": "opt_7_f",
+        "text": "Use a physical disk partition type of 82 (Linux swap).",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_7_a",
+      "opt_7_b"
+    ],
+    "explanation": "The error 'read swap header failed' occurred because the swap file was created with dd but was not initialized with a swap signature. You must run 'mkswap /.swapfile' to initialize it (A) and then execute 'swapon --all' (or swapon -a) to activate all fstab swap devices (B)."
+  },
+  {
+    "id": 8,
+    "question": "Examine this output:\n\n```\nLast metadata expiration check: 4:30:21 ago on Mon 26 Oct 2020 03:09:52 PM GMT.\nInstalled Packages\nName: gzip\nVersion : 1.9\nRelease : 9.el8\nArchitecture : x86_64\nSize : 412k\nSource : gzip-1.9-9.el8.src.rpm\nRepository : @System\nFrom repo : anaconda\nSummary : The GNU data compression program\nURL : http://www.gzip.org\nLicense : GPLv3+ and GFDL\nDescription : The gzip package contains the popular GNU gzip data compression\n: program. Gzipped files have a .gz extension.\n:\n: Gzip should be installed on your system, because it is a\n: very commonly used data compression program.\n```\n\nWhich command generated it ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_8_a",
+        "text": "dnf list /usr/bin/gzip",
+        "is_correct": false
+      },
+      {
+        "id": "opt_8_b",
+        "text": "dnf provides /usr/bin/gzip",
+        "is_correct": false
+      },
+      {
+        "id": "opt_8_c",
+        "text": "dnf info /usr/bin/gzip",
+        "is_correct": true
+      },
+      {
+        "id": "opt_8_d",
+        "text": "dnf search /usr/bin/gzip",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_8_c"
+    ],
+    "explanation": "'dnf info <package_or_file>' displays detailed metadata for a package (Name, Version, Release, Architecture, Size, Source, Repo, Summary, Description). 'dnf list' only outputs short line summaries."
+  },
+  {
+    "id": 9,
+    "question": "Which two statements are true about the proc and sys file systems ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_9_a",
+        "text": "proc contains information about memory and CPUs.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_9_b",
+        "text": "sys contains a list of running processes.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_9_c",
+        "text": "sys contains information about memory and CPUs.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_9_d",
+        "text": "proc contains a list of network drivers.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_9_e",
+        "text": "sys contains a list of mounted devices.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_9_a",
+      "opt_9_e"
+    ],
+    "explanation": "/proc is a virtual filesystem containing runtime system and process information including CPU and memory statistics (/proc/cpuinfo, /proc/meminfo) (A). /sys exposes kernel objects, device drivers, and mounted device attributes (E)."
+  },
+  {
+    "id": 10,
+    "question": "Examine these commands, which execute successfully:\n\n```\n# firewall-cmd --zone=public --add-service=cockpit --permanent\n# firewall-cmd --zone=public --add-port=1313/tcp --permanent\n# firewall-cmd --reload\n```\n\nWhich two are true upon execution ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_10_a",
+        "text": "The Cockpit service is added only to the public zone.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_10_b",
+        "text": "Egress traffic is allowed for the Cockpit service only when using port 1313.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_10_c",
+        "text": "Runtime firewall configuration is not lost when the firewalld process is restarted or the system is rebooted.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_10_d",
+        "text": "Port 1313 blocks all traffic for the public zone except for ingress traffic to the Cockpit service.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_10_e",
+        "text": "The custom Cockpit service configuration file is updated in /usr/lib/firewalld/services.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_10_a",
+      "opt_10_c"
+    ],
+    "explanation": "The command explicitly targeted '--zone=public' (A). The '--permanent' flag ensures changes are written to disk and persistent across firewalld reloads or system reboots (C)."
+  },
+  {
+    "id": 11,
+    "question": "Examine this command and output:\n\n```\n$ ftp host01.example.com\nConnected to host01.example.com (192.168.40.131).\n220 (vsFTPd 3.0.2)\nName (host01.example.com: oracle):\n```\n\nAfter entering a carriage return, this error message is displayed:\n\n```\n530 Permission denied.\nLogin failed.\nftp>\n```\n\nWhy is the oracle user denied access to the FTP server on host01.example.com ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_11_a",
+        "text": "The oracle user does not exist on host01.example.com.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_11_b",
+        "text": "LOCAL_ENABLE is set to NO in /etc/vsftpd/vsftpd.conf.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_11_c",
+        "text": "The oracle user is listed in /etc/vsftpd/user_list and USERLIST_ENABLE is set to NO in /etc/vsftpd/vsftpd.conf.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_11_d",
+        "text": "The oracle user is listed in /etc/vsftpd/ftpusers.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_11_e",
+        "text": "The oracle user is listed in /etc/vsftpd/user_list and USERLIST_ENABLE is set to YES in /etc/vsftpd/vsftpd.conf.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_11_d"
+    ],
+    "explanation": "In vsftpd, users listed in /etc/vsftpd/ftpusers are unconditionally denied access (it acts as a permanent blacklist). When oracle connects and receives 530 Permission denied, it is because oracle is listed in /etc/vsftpd/ftpusers (D)."
+  },
+  {
+    "id": 12,
+    "question": "Examine these requirements for a host with a user oracle:\n\n1. Network services must run in a confined domain.\n\n2. The oracle user must be confined.\n\n3. The oracle user must be able to use Mozilla Firefox.\n\n4. Access to files and directories must be granted based only on SELINUX contexts.\n\n5. The SELinux configuration must be persistent across system restarts.\n\n6. User must be able to publish private HTML content.\n\nNow examine these commands and output:\n\n```\n# sestatus\nSELinux status:  enabled\nSELinuxfs mount:  /sys/fs/selinux\nSELinux root directory :  /etc/selinux\nLoaded policy name :  targeted\nCurrent mode :  permissive\nMode from config file :  permissive\nPolicy MLS status:  enabled\nPolicy deny_unknown status:  allowed\nMemory protection checking:  actual (secure)\nMax kernel policy version:  31\n# setenforce enforcing\n# semanage login -a -s guest_u oracle\n# setsebool -P httpd_enable_homedirs on\n```\n\nWhich requirements are satisfied ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_12_a",
+        "text": "1,2,4,5,6",
+        "is_correct": false
+      },
+      {
+        "id": "opt_12_b",
+        "text": "1,2,3,4,5,6",
+        "is_correct": false
+      },
+      {
+        "id": "opt_12_c",
+        "text": "1,2,3,5,6",
+        "is_correct": false
+      },
+      {
+        "id": "opt_12_d",
+        "text": "1,2,6",
+        "is_correct": false
+      },
+      {
+        "id": "opt_12_e",
+        "text": "1,2,4,6",
+        "is_correct": false
+      },
+      {
+        "id": "opt_12_f",
+        "text": "1,2,3,6",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_12_f"
+    ],
+    "explanation": "Targeted policy confines network daemons (Req 1). The semanage login command confines oracle to guest_u (Req 2). Guest users can run basic user apps like Firefox (Req 3). Setting httpd_enable_homedirs allows publishing private HTML (Req 6). However, setenforce enforcing is runtime-only without editing /etc/selinux/config (so Req 5 is not satisfied), and DAC file permissions still apply alongside SELinux (so Req 4 is not satisfied). Thus, requirements 1, 2, 3, 6 are satisfied."
+  },
+  {
+    "id": 13,
+    "question": "Examine this command:\n\n```\n# cryptsetup luksOpen /dev/xvdd1 cryptfs\n```\n\nWhat happens upon execution ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_13_a",
+        "text": "It creates the /dev/mapper/cryptfs device mapping file.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_13_b",
+        "text": "It creates the LUKS partition on /dev/xvdd1 .",
+        "is_correct": false
+      },
+      {
+        "id": "opt_13_c",
+        "text": "It creates the /dev/mapper/xvdd1 device mapping file.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_13_d",
+        "text": "It creates the /dev/mapper/xvdd1/cryptfs device mapping file.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_13_e",
+        "text": "It creates the /dev/mapper/xvdd1-cryptfs device mapping file.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_13_a"
+    ],
+    "explanation": "'cryptsetup luksOpen <device> <name>' unlocks an existing LUKS encrypted partition and maps it to /dev/mapper/<name> (/dev/mapper/cryptfs) (A)."
+  },
+  {
+    "id": 14,
+    "question": "Which two statements are true about fdisk ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_14_a",
+        "text": "It understands GPT, MBR, and HFS partition tables.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_14_b",
+        "text": "fdisk -l displays disk size information for all disks.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_14_c",
+        "text": "It can partition disks larger than 2 TB by using a GPT partition table.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_14_d",
+        "text": "It can divide logical devices into one or more block disks called partitions.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_14_e",
+        "text": "It cannot partition disks larger than 2 TB by using a GPT partition table.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_14_b",
+      "opt_14_c"
+    ],
+    "explanation": "'fdisk -l' displays partition and size details for all available disk devices (B). In modern Linux, fdisk supports GPT partition tables and can partition drives larger than 2 TB (C)."
+  },
+  {
+    "id": 15,
+    "question": "Examine this command and output:\n\n```\n# ausearch -k mkdir\ntype=SYSCALL msg=audit (1604360199.719:44733): arch=c000003e syscall=83 success=no\n```\n\na0 =55dec0b47400 a1=1c0 a2=0 a3=0 items=2 ppid=1354 pid=284632 auid=4294967295 uid=\n\n```\ngid=996 euid=998 suid=998 fsuid=998 egid=996 sgid=996 fsgid=996 tty=(none) ses=429\ncomm=\"pkla-check-auth\" exe=\"/usr/bin/pkla-check-authorization\"\nsubj=system_u:system_r:policykit_auth_t:s0 key=\"mkdir\"\n```\n\nWhich command displays the syscall in text format instead of numerical format ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_15_a",
+        "text": "ausearch -a 83 -k mkdir",
+        "is_correct": false
+      },
+      {
+        "id": "opt_15_b",
+        "text": "ausearch -i -k mkdir",
+        "is_correct": true
+      },
+      {
+        "id": "opt_15_c",
+        "text": "ausearch -sc 83 -k mkdir",
+        "is_correct": false
+      },
+      {
+        "id": "opt_15_d",
+        "text": "ausearch --format text -k mkdir",
+        "is_correct": false
+      },
+      {
+        "id": "opt_15_e",
+        "text": "ausearch -r -k mkdir",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_15_b"
+    ],
+    "explanation": "The '-i' (interpret) option in ausearch converts numeric system call numbers, UIDs, and GIDs into human-readable text names (e.g. converting syscall 83 to 'mkdir') (B)."
+  },
+  {
+    "id": 16,
+    "question": "Which two statements are true about container technology ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_16_a",
+        "text": "A container application buit on a bare metal system cannot run on virtual machines or cloud instances.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_16_b",
+        "text": "A container application is dependent on the host operating system and kernel version.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_16_c",
+        "text": "Containers package an application with the individual runtime slack.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_16_d",
+        "text": "Podman, Buildah, and Skopeo are independent tools to create, run, and manage container applications across compatible Oracle Linux systems.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_16_e",
+        "text": "Podman requires a running daemon to function and to enable containers to start and run",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_16_c",
+      "opt_16_d"
+    ],
+    "explanation": "Containers package application code along with their required dependencies and runtime libraries (C). Podman, Buildah, and Skopeo are modular, daemonless container tools in Oracle Linux 8 (D). without root permissions."
+  },
+  {
+    "id": 17,
+    "question": "Which two methods of changing kernel parameters can you use to modify values for the running … ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_17_a",
+        "text": "issuing the sysctl -w command to write values to specific files in the /proc/sys directory",
+        "is_correct": true
+      },
+      {
+        "id": "opt_17_b",
+        "text": "using the echo command to write values to specific files in the /proc/sys directory",
+        "is_correct": true
+      },
+      {
+        "id": "opt_17_c",
+        "text": "issuing the sysctl -w command to write values to specific files in the /sys directory.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_17_d",
+        "text": "using the echo command to write values to specific files in /sys directory.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_17_e",
+        "text": "adding to or modifying parameters and values in the /etc/systemd/sysctl.conf file followed",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_17_a",
+      "opt_17_b"
+    ],
+    "explanation": "Running kernel parameters can be changed dynamically without rebooting by writing directly to /proc/sys using 'echo <val> > /proc/sys/...' (B) or by using 'sysctl -w parameter=value' (A). by issuing the sysctl -p command"
+  },
+  {
+    "id": 18,
+    "question": "Which two statemens are true about the Oracle Linux 8 boot process ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_18_a",
+        "text": "The bootloader loads the initramfs file into memory and extracts the vmlinuz file into a temporary file system (tmpfs)",
+        "is_correct": false
+      },
+      {
+        "id": "opt_18_b",
+        "text": "The kernel loads driver modules from vmlinuz that are required to access the root file system.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_18_c",
+        "text": "The bootloader loads the initramfs file into memory and extracts the vmlinuz file into the /boot file system.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_18_d",
+        "text": "The kernel loads driver modules from initramfs that are required to access the root file system.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_18_e",
+        "text": "Both the vmlinuz file and the initramfs file are located in the /boot directory.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_18_d",
+      "opt_18_e"
+    ],
+    "explanation": "Both vmlinuz (compressed Linux kernel) and initramfs (initial RAM filesystem) are stored in the /boot directory (E). During boot, the kernel loads necessary storage/filesystem modules from initramfs to mount the real root filesystem (D)."
+  },
+  {
+    "id": 19,
+    "question": "Which is true about the /etc/sysconfig directory in an Oracle Linux 8 system ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_19_a",
+        "text": "It is used to access device and device driver information.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_19_b",
+        "text": "Files in this directory hierarchy contain information about running processes.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_19_c",
+        "text": "Its contents depend on the packages installed on the system.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_19_d",
+        "text": "Files in this directory hierarchy contain information about system hardware.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_19_c"
+    ],
+    "explanation": "The /etc/sysconfig directory contains startup and subsystem configuration files whose presence depends on which packages and services are installed on the system (C)."
+  },
+  {
+    "id": 20,
+    "question": "Which two statements are true about the Linux Auditing System ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_20_a",
+        "text": "Auditing rules can log administrator attempts to access user home directories.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_20_b",
+        "text": "Auditing system call rules can affect system performance depending on the amount of information that is logged.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_20_c",
+        "text": "Auditing modes include permissive, enforcing, and disabled.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_20_d",
+        "text": "Auditing can scan for Common Vulnerabilities and Exposures (CVE) and automatically apply needed patches to a system.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_20_e",
+        "text": "Auditing includes security policies, each of which includes security rules, or checks, which are checked when you run a security scan.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_20_a",
+      "opt_20_b"
+    ],
+    "explanation": "Linux Audit rules can monitor file and directory access, logging whenever administrators or users access specific paths like user home directories (A). Audit rules that monitor frequent system calls introduce overhead and affect system performance depending on event volume (B). checked when you run a security scan."
+  },
+  {
+    "id": 21,
+    "question": "Examine this command:\n\n```\n# nft add rule inet filter input tcp dport 80 drop\n```\n\nWhich two statements are true upon execution ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_21_a",
+        "text": "The rule is applied to both IPv4 and IPv6 packets.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_21_b",
+        "text": "The rule updates the configuration on disk.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_21_c",
+        "text": "All traffic inbound on port 80 is dropped.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_21_d",
+        "text": "The rule applies to the input table.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_21_e",
+        "text": "TCP packets inbound on port 80 are dropped.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_21_f",
+        "text": "TCP packets outbound on port 80 are dropped.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_21_a",
+      "opt_21_e"
+    ],
+    "explanation": "In nftables, the 'inet' address family encompasses both IPv4 and IPv6 traffic (A). The rule matches 'input tcp dport 80 drop', dropping incoming TCP packets destined for port 80 (E)."
+  },
+  {
+    "id": 22,
+    "question": "Examine this udev device naming rule which gets processed successfully:\n\nKERNEL==\"hdb\", DRIVER==\"ide-disk\", SYMLINK+=\"sparedisk\"\n\nWhich two statements are true ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_22_a",
+        "text": "Symbolic link /dev/sparedisk is created linking to /dev/hdb and with an ide-disk device driver, thus overwriting existing symbolic links.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_22_b",
+        "text": "The matching device will be named /dev/sparedisk.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_22_c",
+        "text": "Symbolic link /dev/sparedisk is created for a device named /dev/hdb which has an ide-disk device driver if such a device is discovered.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_22_d",
+        "text": "The matching device will have the kernel device name /dev/hdb.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_22_e",
+        "text": "Symbolic link /dev/sparedisk is created for a device named /dev/hdb or one that has an ide-disk",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_22_c",
+      "opt_22_d"
+    ],
+    "explanation": "The rule KERNEL=='hdb', DRIVER=='ide-disk', SYMLINK+='sparedisk' maintains the primary kernel device name as /dev/hdb (D) and adds a persistent symbolic link /dev/sparedisk pointing to /dev/hdb (C). device driver, whichever is discovered first."
+  },
+  {
+    "id": 23,
+    "question": "Examine this command, which executes successfully:\n\nuseradd -m -s /bin/bash alice\n\nWhich statement is true about the account ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_23_a",
+        "text": "It is a member of the wheel group.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_23_b",
+        "text": "It is assigned a shell but without a password.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_23_c",
+        "text": "Is is assigned a home directory and a password.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_23_d",
+        "text": "Is is not assigned a home directory.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_23_b"
+    ],
+    "explanation": "'useradd -m -s /bin/bash alice' creates user alice, creates her home directory (-m), and sets /bin/bash as login shell (-s). No password is set at creation time; the account is locked until 'passwd alice' is executed (B)."
+  },
+  {
+    "id": 24,
+    "question": "Which are three of the network bonding modes supported in Oracle Linux 8 ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 3,
+    "options": [
+      {
+        "id": "opt_24_a",
+        "text": "Multicast",
+        "is_correct": false
+      },
+      {
+        "id": "opt_24_b",
+        "text": "Round-Robin",
+        "is_correct": true
+      },
+      {
+        "id": "opt_24_c",
+        "text": "Split Horizon",
+        "is_correct": false
+      },
+      {
+        "id": "opt_24_d",
+        "text": "802.3ad",
+        "is_correct": true
+      },
+      {
+        "id": "opt_24_e",
+        "text": "Poison reverse",
+        "is_correct": false
+      },
+      {
+        "id": "opt_24_f",
+        "text": "Active backup",
+        "is_correct": true
+      },
+      {
+        "id": "opt_24_g",
+        "text": "Passive backup",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_24_b",
+      "opt_24_d",
+      "opt_24_f"
+    ],
+    "explanation": "Supported Linux network bonding modes include Round-Robin (balance-rr / mode 0) (B), 802.3ad (Dynamic link aggregation / mode 4) (D), and Active-Backup (mode 1) (F)."
+  },
+  {
+    "id": 25,
+    "question": "Which two statements are true about the at and batch commands ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_25_a",
+        "text": "batch schedules the execution of recurring tasks.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_25_b",
+        "text": "at schedules the execution of recurring tasks.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_25_c",
+        "text": "Both at and batch are read from standard input, or you can specify a file and execute the commands with the -f option.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_25_d",
+        "text": "batch executes a task when the system load average is greater than 0.8.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_25_e",
+        "text": "at executes a one-time task to run at a specific time.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_25_c",
+      "opt_25_e"
+    ],
+    "explanation": "'at' schedules a non-recurring (one-time) job to run at a specified future time (E). Both 'at' and 'batch' accept commands from standard input or from a file using the '-f' option (C)."
+  },
+  {
+    "id": 26,
+    "question": "Which statement is true about slice units ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_26_a",
+        "text": "A slice unit is a concept for hierarchically managing resources in a group of processes.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_26_b",
+        "text": "Processes in a slice unit are named at the same level as scopes and services.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_26_c",
+        "text": "The system.slice contains all system services and user sessions.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_26_d",
+        "text": "A slice unit accepts multiple names by the creation of additional symlinks to the unit file.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_26_a"
+    ],
+    "explanation": "In systemd resource management, a slice unit organizes a hierarchy of cgroups to manage system resources (CPU, memory, I/O) across groups of processes, services, and scopes (A)."
+  },
+  {
+    "id": 27,
+    "question": "Which two statements are true about kernel boot parameters ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_27_a",
+        "text": "Boot parameters are defined as values for the GRUB_CMDLINE_LINUX directive in the /etc/default/grub file.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_27_b",
+        "text": "Boot parameters are defined as values for the GRUB_BOOT directive in the /etc/default/grub file .",
+        "is_correct": false
+      },
+      {
+        "id": "opt_27_c",
+        "text": "Parameters passed to the kernel from the GRUB 2 command-line interface are persistent and apply to all subsequent reboots.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_27_d",
+        "text": "Each kernel version's boot parameters are stored in independent configuration files in /boot/loader/entries .",
+        "is_correct": true
+      },
+      {
+        "id": "opt_27_e",
+        "text": "Parameters passed to the kernel from the GRUB 2 menu are persistent and apply to all",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_27_a",
+      "opt_27_d"
+    ],
+    "explanation": "Default kernel boot parameters are set via GRUB_CMDLINE_LINUX in /etc/default/grub (A). In Oracle Linux 8 (using the Boot Loader Specification / BLS), individual boot entries with specific kernel parameters are stored as separate files in /boot/loader/entries/ (D). subsequent reboots."
+  },
+  {
+    "id": 28,
+    "question": "Which two types of reports does iostat generate ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_28_a",
+        "text": "Storage Utilization Report",
+        "is_correct": false
+      },
+      {
+        "id": "opt_28_b",
+        "text": "Device Utilization Report",
+        "is_correct": true
+      },
+      {
+        "id": "opt_28_c",
+        "text": "Memory Utilization Report",
+        "is_correct": false
+      },
+      {
+        "id": "opt_28_d",
+        "text": "Swap Utilization Report",
+        "is_correct": false
+      },
+      {
+        "id": "opt_28_e",
+        "text": "CPU Utilization Report",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_28_b",
+      "opt_28_e"
+    ],
+    "explanation": "The iostat utility produces two primary reports: the CPU Utilization Report and the Device (Disk I/O) Utilization Report (B, E)."
+  },
+  {
+    "id": 29,
+    "question": "Which two statements are true about systemd system and service manager ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_29_a",
+        "text": "systemd service units expose kernel devices and can be used to implement device-based activation.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_29_b",
+        "text": "systemd is the first process that starts after the system boots, and is the final process left running before the system shuts down.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_29_c",
+        "text": "systemd is backward-compatible with the System V init scripts that were used in earlier versions of Oracle Linux.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_29_d",
+        "text": "The service command is used to start and stop systemd service units.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_29_b",
+      "opt_29_c"
+    ],
+    "explanation": "systemd is PID 1, starting immediately after the kernel boots and running until system shutdown (B). It retains backward compatibility with traditional SysV init scripts located in /etc/init.d (C)."
+  },
+  {
+    "id": 30,
+    "question": "Examine these Kubernetes components:\n\n```\nComponent  Description\n1) kubectl  a) Processes and validates requests and performs the operation\n2) etcd  b) Determines where containers should be run by availability of resources\n3) kubelet  c) Agent that allows nodes to communicate with the API server\n4) kube-proxy  d) Command-line interface used to control Kubernetes cluster manager\n5) kube-apiserver  e) Performs all of the networking functions and routes network traffic\n6) kube-scheduler  f) Stores configuration data relating to the status of the cluster\n```\n\nWhich option correctly matches the components with their description ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_30_a",
+        "text": "1-d, 2-f, 3-e, 4-a, 5-c, 6-b",
+        "is_correct": false
+      },
+      {
+        "id": "opt_30_b",
+        "text": "1-b, 2-a, 3-e, 4-c, 5-f, 6-d",
+        "is_correct": false
+      },
+      {
+        "id": "opt_30_c",
+        "text": "1-a, 2-d, 3-b, 4-c, 5-e, 6-f",
+        "is_correct": false
+      },
+      {
+        "id": "opt_30_d",
+        "text": "1-c, 2-f, 3-d, 4-b, 5-e, 6-a",
+        "is_correct": false
+      },
+      {
+        "id": "opt_30_e",
+        "text": "1-d, 2-f, 3-c, 4-e, 5-a, 6-b",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_30_e"
+    ],
+    "explanation": "kubectl is the CLI (1-d); etcd stores cluster state/config (2-f); kubelet communicates with apiserver on each node (3-c); kube-proxy routes networking traffic (4-e); kube-apiserver validates & performs operations (5-a); kube-scheduler assigns pods based on resources (6-b). Matching: 1-d, 2-f, 3-c, 4-e, 5-a, 6-b (E)."
+  },
+  {
+    "id": 31,
+    "question": "Which two components are used for creating a new rsyslog rule ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_31_a",
+        "text": "filter",
+        "is_correct": true
+      },
+      {
+        "id": "opt_31_b",
+        "text": "action",
+        "is_correct": true
+      },
+      {
+        "id": "opt_31_c",
+        "text": "parser",
+        "is_correct": false
+      },
+      {
+        "id": "opt_31_d",
+        "text": "module",
+        "is_correct": false
+      },
+      {
+        "id": "opt_31_e",
+        "text": "security policy",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_31_a",
+      "opt_31_b"
+    ],
+    "explanation": "Every rsyslog rule consists of two basic elements: a Filter (selector matching facility and severity or expression) (A) and an Action (specifying the destination file, remote host, or user console) (B)."
+  },
+  {
+    "id": 32,
+    "question": "Examine this command:\n\n```\n$ podman run --name=oracleshell -it oraclelinux:8-slim\n```\n\nWhich two statements are true upon execution ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_32_a",
+        "text": "The container creates and starts an interactive shell.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_32_b",
+        "text": "The container named oracleshell must already exist; otherwise, the command fails.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_32_c",
+        "text": "The command fails if the oraclelinux:8-slim image does not exist on the local machine.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_32_d",
+        "text": "The container is created and started in a single command.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_32_e",
+        "text": "The container is removed by typing exit at the bash shell prompt.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_32_a",
+      "opt_32_d"
+    ],
+    "explanation": "'podman run' creates and starts a container in a single command (D), and passing '-it' attaches an interactive pseudo-TTY shell inside the container upon execution (A)."
+  },
+  {
+    "id": 33,
+    "question": "Which two actions are performed by the logrotate utility ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_33_a",
+        "text": "rotating log files as specified",
+        "is_correct": true
+      },
+      {
+        "id": "opt_33_b",
+        "text": "encrypting log files",
+        "is_correct": false
+      },
+      {
+        "id": "opt_33_c",
+        "text": "compressing log files",
+        "is_correct": true
+      },
+      {
+        "id": "opt_33_d",
+        "text": "duplicating log files",
+        "is_correct": false
+      },
+      {
+        "id": "opt_33_e",
+        "text": "hashing log files",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_33_a",
+      "opt_33_c"
+    ],
+    "explanation": "logrotate automates the rotation (renaming/cycling) (A) and compression (gzip/bzip2) (C) of log files on the system."
+  },
+  {
+    "id": 34,
+    "question": "As root you configured a file system using AutoFS with default settings.\n\nIn the first session, you changed to a directory under AutoFS control. In a second session, you\n\ndirectory to /etc. Now the idle time for the first session expires.\n\nWhich two statements are true about the status of the file system mounted in the first session.",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_34_a",
+        "text": "It remains mounted as long as the system is running.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_34_b",
+        "text": "It remains mounted until you log out from the first session.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_34_c",
+        "text": "It was unmounted from the first session when the timer expired.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_34_d",
+        "text": "It was unmounted when the second session began.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_34_e",
+        "text": "It remains mounted until you switch to a directory outside the current mount point.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_34_c",
+      "opt_34_e"
+    ],
+    "explanation": "AutoFS unmounts idle filesystems after the timeout expires if the mount is not in use. If a shell is currently inside the directory, it remains busy; once the user changes out of the directory or idle conditions are met, AutoFS unmounts it (C, E)."
+  },
+  {
+    "id": 35,
+    "question": "Examine these commands and output:\n\n```\n# cat /etc/auto.master\n/net -hosts\n/- auto.direct ro\n\n# cat /etc/auto.direct\n/nfs1  host01:/export/share1\n/nfs2 -sync host01:/export/share2\n/nfs3 host02:/export/share3\n```\n\nautomounter must be used to mount these filesystems.\n\nWhich mount options will it use ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_35_a",
+        "text": "/nfs1 and /nfs3 are mounted read-only, async while /nfs2 is mounted read-only,sync .",
+        "is_correct": true
+      },
+      {
+        "id": "opt_35_b",
+        "text": "All three filesystems are mounted read-write, sync.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_35_c",
+        "text": "All three filesystems are mounted read-only, sync.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_35_d",
+        "text": "All three filesystems are mounted read-only, async .",
+        "is_correct": false
+      },
+      {
+        "id": "opt_35_e",
+        "text": "/nfs1 and /nfs3 are mounted read-only, async while /nfs2 is mounted read-write, sync.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_35_a"
+    ],
+    "explanation": "The direct map entry in auto.master specifies default 'ro' (read-only) and NFS defaults to async. /nfs1 and /nfs3 take the default 'ro, async', while /nfs2 explicitly specifies '-sync', resulting in 'ro, sync' (A)."
+  },
+  {
+    "id": 36,
+    "question": "Which three statements are true about DNF modules ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 3,
+    "options": [
+      {
+        "id": "opt_36_a",
+        "text": "Modules are a group of packages that are installed together along with dependencies.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_36_b",
+        "text": "Installing a module allows a user to select a specific stream.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_36_c",
+        "text": "Profiles are used to provide alternate versions of the same module.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_36_d",
+        "text": "Streams are used to define optional configurations of module.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_36_e",
+        "text": "Streams cannot declare dependencies on the streams of other modules.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_36_f",
+        "text": "Packages exist in multiple streams, where each stream contains a different version.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_36_g",
+        "text": "Switching an enabled module stream automatically changes installed packages.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_36_a",
+      "opt_36_b",
+      "opt_36_f"
+    ],
+    "explanation": "DNF modules represent a collection of packages representing an application and its dependencies (A). Users can select from multiple streams (B), where each stream provides a distinct version of the application stack (F)."
+  },
+  {
+    "id": 37,
+    "question": "Which three statements are true about the journalctl command ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 3,
+    "options": [
+      {
+        "id": "opt_37_a",
+        "text": "journalctl -b1 -p err fails if journal persistence is not configured.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_37_b",
+        "text": "journalctl -p err shows only error log level.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_37_c",
+        "text": "journalctl -p notice..warning shows all messages from notice to warning log level since the last boot.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_37_d",
+        "text": "journalctl -k shows kernel logs since the last boot.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_37_e",
+        "text": "journalctl -p 6 shows all info log level messages and above.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_37_a",
+      "opt_37_c",
+      "opt_37_d"
+    ],
+    "explanation": "'journalctl -b1' requires persistent storage (/var/log/journal) to access previous boots (A). '-p notice..warning' filters message ranges between notice and warning (C). '-k' filters exclusively for kernel messages (D)."
+  },
+  {
+    "id": 38,
+    "question": "Which two statements are true about the configuration and use of cron or anacron ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_38_a",
+        "text": "cron jobs may run only once a minute.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_38_b",
+        "text": "All crontabs are held in the /etc/cron.d directory",
+        "is_correct": false
+      },
+      {
+        "id": "opt_38_c",
+        "text": "The crond daemon looks for jobs only in /etc/crontab.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_38_d",
+        "text": "anacron jobs may run only once a day.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_38_e",
+        "text": "anacron jobs are used to run cron jobs if the system was powered off when they were scheduled to run.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_38_a",
+      "opt_38_e"
+    ],
+    "explanation": "Standard cron executes on a 1-minute granularity (A). Anacron is designed to ensure periodic jobs (daily/weekly/monthly) run even if the system was powered off when the scheduled cron time passed (E)."
+  },
+  {
+    "id": 39,
+    "question": "Examine /etc/anacrontab :\n\n```\nSHELL=/bin/bash\nPATH=/sbin:/bin:/usr/sbin:/usr/bin\nMAILTO=root\n\n# the maximal random delay added to the base delay of the jobs\nRANDOM_DELAY = 45\n\n# the jobs are started during the following hours only\nSTART_HOURS_RANGE=3-22\n\n# period in days   delay in minutes   job-identifier   command\n1                  5                  dailyjob         nice run-parts /etc/cron.daily\n7                  25                 weeklyjob        nice run-parts /etc/cron.weekly\n\"@monthly\"         45                 monthlyjob       nice run-parts /etc/cron.monthly\n```\n\nWhich two statements are true about the jobs scheduled in this file ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_39_a",
+        "text": "Scripts run by the first job are delayed between 11 and 45 minutes.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_39_b",
+        "text": "Jobs defined in this anacrontab file can be executed between 15:00 and 22:00.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_39_c",
+        "text": "Scripts run by the third job are delayed between 45 and 90 minutes.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_39_d",
+        "text": "Jobs defined in this anacrontab file are randomly delayed by up to 51 minutes.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_39_e",
+        "text": "Scripts run by the second job are delayed between 31 and 70 minutes.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_39_b",
+      "opt_39_c"
+    ],
+    "explanation": "START_HOURS_RANGE=3-22 means jobs run between 03:00 and 22:00 (so executing at 15:00-22:00 is valid) (B). The third job (@monthly) has a base delay of 45 minutes plus RANDOM_DELAY (up to 45 mins), so total delay is between 45 and 90 minutes (C)."
+  },
+  {
+    "id": 40,
+    "question": "Examine this command, which executes successfully :\n\n```\n# nmcli con add con-name eth2 type ethernet ifname eth2 \\\nipv6.address 2804:14c:110:ab2f:c31b:1212:7917:708a/64 \\\nipv6.gateway 2804:14c:110:ab2f::1003 \\\nipv4.address 192.168.0.5/24 ipv4.gateway 192.168.0.254\n```\n\nThe eth2 connection does not exist.\n\nWhich two statements are true ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_40_a",
+        "text": "Ethernet connection eth2 is created.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_40_b",
+        "text": "The configuration is saved in /etc/sysconfig/network .",
+        "is_correct": false
+      },
+      {
+        "id": "opt_40_c",
+        "text": "A static IP address is assigned to the eth2 connection.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_40_d",
+        "text": "It configures an automatic IPV6 address.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_40_e",
+        "text": "Ethernet interface eth2 is created.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_40_a",
+      "opt_40_c"
+    ],
+    "explanation": "'nmcli con add con-name eth2 type ethernet ifname eth2 ...' creates an Ethernet connection profile named eth2 (A) and assigns static IPv4 and IPv6 network addresses (C)."
+  },
+  {
+    "id": 41,
+    "question": "Which takes precedence for ssh program configuration ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_41_a",
+        "text": "/etc/ssh/ssh_config",
+        "is_correct": false
+      },
+      {
+        "id": "opt_41_b",
+        "text": "~/.ssh/config",
+        "is_correct": false
+      },
+      {
+        "id": "opt_41_c",
+        "text": "Command line",
+        "is_correct": true
+      },
+      {
+        "id": "opt_41_d",
+        "text": "/etc/ssh/sshd_config",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_41_c"
+    ],
+    "explanation": "OpenSSH client configuration precedence order is: 1) Command-line options (-o / flags), 2) User-specific configuration file (~/.ssh/config), 3) System-wide configuration file (/etc/ssh/ssh_config). Command line takes top precedence (C)."
+  },
+  {
+    "id": 42,
+    "question": "Which two commands relabel an SELinux system after a reboot ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_42_a",
+        "text": "Set kernel parameter autorelabel=0",
+        "is_correct": false
+      },
+      {
+        "id": "opt_42_b",
+        "text": "fixfiles -F relabel",
+        "is_correct": false
+      },
+      {
+        "id": "opt_42_c",
+        "text": "echo \"relabel=1\" >  /.selinux",
+        "is_correct": false
+      },
+      {
+        "id": "opt_42_d",
+        "text": "touch /.autorelabel",
+        "is_correct": true
+      },
+      {
+        "id": "opt_42_e",
+        "text": "Set kernel parameter selinux=0",
+        "is_correct": false
+      },
+      {
+        "id": "opt_42_f",
+        "text": "fixfiles -F onboot",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_42_d",
+      "opt_42_f"
+    ],
+    "explanation": "To trigger an SELinux filesystem relabeling on next system boot, you can create the flag file 'touch /.autorelabel' (D) or execute 'fixfiles -F onboot' (F)."
+  },
+  {
+    "id": 43,
+    "question": "Which command configures a fully functional and accessible interface on VLAN 800 ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_43_a",
+        "text": "ip link add link eth0 name eth0.800 type vlan id 800\nip link set eth0.800 up",
+        "is_correct": false
+      },
+      {
+        "id": "opt_43_b",
+        "text": "modprobe 8021q\nip link add link eth0 name eth0.800 VLAN 800\nip address add 10.135.1.120/24 dev eth0.800\nip link set eth0.800 up",
+        "is_correct": false
+      },
+      {
+        "id": "opt_43_c",
+        "text": "ip link add link eth0 name eth0.800 type vlan id 800\nip address add 10.135.1.120/24 dev eth0.800\nip link set eth0.800 up",
+        "is_correct": true
+      },
+      {
+        "id": "opt_43_d",
+        "text": "modprobe 8021q\nip address add 10.135.1.120/24 dev eth0.800\nip link set eth0.800 up",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_43_c"
+    ],
+    "explanation": "To create a fully functional and accessible VLAN 800 sub-interface on eth0: create the VLAN link ('ip link add link eth0 name eth0.800 type vlan id 800'), assign the IP address to make it network accessible ('ip address add 10.135.1.120/24 dev eth0.800'), and bring it UP ('ip link set eth0.800 up') (C)."
+  },
+  {
+    "id": 44,
+    "question": "Which two features does a user private group provide ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_44_a",
+        "text": "provision of a unique group",
+        "is_correct": true
+      },
+      {
+        "id": "opt_44_b",
+        "text": "capability to create new group users",
+        "is_correct": false
+      },
+      {
+        "id": "opt_44_c",
+        "text": "capability to execute sudo",
+        "is_correct": false
+      },
+      {
+        "id": "opt_44_d",
+        "text": "ability for only a group's users to read files in a new directory",
+        "is_correct": false
+      },
+      {
+        "id": "opt_44_e",
+        "text": "capability to prevent other users from modifying a file",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_44_a",
+      "opt_44_e"
+    ],
+    "explanation": "User Private Groups (UPG) create a dedicated unique group for each user matching their username (A), and with standard umask (002/022), it ensures non-group users cannot modify created files (E)."
+  },
+  {
+    "id": 45,
+    "question": "Which two are true about using Ksplice ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_45_a",
+        "text": "Ksplice can be used without a network connection.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_45_b",
+        "text": "It can patch the kernel without shutting down the system.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_45_c",
+        "text": "yum cannot upgrade a kernel patched by Ksplice.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_45_d",
+        "text": "Ksplice has two clients; each can run in three different modes.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_45_e",
+        "text": "The Ksplice client is freely available to all customers.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_45_b",
+      "opt_45_d"
+    ],
+    "explanation": "Ksplice applies zero-downtime kernel security patches and bug fixes without rebooting the system (B). It provides two clients (uptrack and ksplice offline client) which support multiple operational modes (D)."
+  },
+  {
+    "id": 46,
+    "question": "Which command produces human-readable time stamps in kernel ring buffer messages ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_46_a",
+        "text": "dmesg -t",
+        "is_correct": false
+      },
+      {
+        "id": "opt_46_b",
+        "text": "dmesg -x",
+        "is_correct": false
+      },
+      {
+        "id": "opt_46_c",
+        "text": "dmesg -T",
+        "is_correct": true
+      },
+      {
+        "id": "opt_46_d",
+        "text": "dmesg -w",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_46_c"
+    ],
+    "explanation": "'dmesg -T' (or --ctime) displays human-readable, readable timestamps (e.g. date and time) for kernel ring buffer log entries (C)."
+  },
+  {
+    "id": 47,
+    "question": "You must prevent Ksplice from reapplying updates at next system reboot.\n\nWhich two commands or parameters can do this ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_47_a",
+        "text": "uptrack-upgrade -n",
+        "is_correct": false
+      },
+      {
+        "id": "opt_47_b",
+        "text": "nouptrack",
+        "is_correct": true
+      },
+      {
+        "id": "opt_47_c",
+        "text": "uptrack-remove --all",
+        "is_correct": true
+      },
+      {
+        "id": "opt_47_d",
+        "text": "uptrack=0",
+        "is_correct": false
+      },
+      {
+        "id": "opt_47_e",
+        "text": "touch /etc/uptrack/disable",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_47_b",
+      "opt_47_c"
+    ],
+    "explanation": "To prevent Ksplice Uptrack updates from reapplying on reboot, you can pass the 'nouptrack' kernel boot parameter (B) or remove all installed updates using 'uptrack-remove --all' (C)."
+  },
+  {
+    "id": 48,
+    "question": "Examine this command:\n\n```\n# ssh -L 5011:127.0.0.1:80 bob@10.10.2.20 -f sleep 30\n```\n\nWhich two are true upon execution ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_48_a",
+        "text": "A reverse tunnel is created back to the local host on port 80.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_48_b",
+        "text": "A local port forward is created between client and server.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_48_c",
+        "text": "A socket remains open for 30 minutes unless a connection is established.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_48_d",
+        "text": "A web server is listening on port 5011.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_48_e",
+        "text": "An SSH connection process is forked to the background.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_48_b",
+      "opt_48_e"
+    ],
+    "explanation": "'ssh -L 5011:127.0.0.1:80 ...' sets up local port forwarding on client port 5011 to remote port 80 (B). The '-f' option forks the SSH client into the background right before command execution (E)."
+  },
+  {
+    "id": 49,
+    "question": "Examine these commands executed by root:\n\n```\n# mkdir -p /jail /jail/bin /jail/lib64\n# cp $(which bash) /jail/bin\n# ldd $(which bash)\n        linux-vdso.so.1 (0x00007ffd574f5000)\n        libtinfo.so.6 => /lib64/libtinfo.so.6 (0x00007fb458c2c000)\n        libdl.so.2 => /lib64/libdl.so.2 (0x00007fb458a28000)\n        libc.so.6 => /lib64/libc.so.6 (0x00007fb458666000)\n        /lib64/ld-linux-x86-64.so.2 (0x00007fb459177000)\n# cp /lib64/libtinfo.so.6 /jail/lib64/\n# cp /lib64/libdl.so.2 /jail/lib64/\n# cp /lib64/libc.so.6 /jail/lib64/\n# cp /lib64/ld-linux-x86-64.so.2 /jail/lib64\n```\n\nThe root user then issues this command :\n\n```\n# chroot /jail\n```\n\nWhat is the output from the cd, pwd, and ls commands ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_49_a",
+        "text": "bash-4.4 # cd\nbash: cd: command not found\nbash-4.4 # pwd\nbash: pwd: command not found\nbash-4.4 # ls\nbash: ls: command not found",
+        "is_correct": false
+      },
+      {
+        "id": "opt_49_b",
+        "text": "bash-4.4 # cd\nbash: cd: /root: Unable to access chrooted file or directory /root\nbash-4.4 # pwd\n/\nbash-4.4 # ls\nbin lib64",
+        "is_correct": false
+      },
+      {
+        "id": "opt_49_c",
+        "text": "bash-4.4 # cd\nbash-4.4 # pwd\n/root\nbash-4.4 # ls\nbash: ls: command not found",
+        "is_correct": false
+      },
+      {
+        "id": "opt_49_d",
+        "text": "bash-4.4 # cd\nbash: cd: /root: No such file or directory\nbash-4.4 # pwd\n/\nbash-4.4 # ls\nbin lib64",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_49_d"
+    ],
+    "explanation": "In the chroot jail, cd and pwd are bash built-in commands so they execute. cd without arguments tries to go to $HOME (/root), which does not exist in the jail, giving 'bash: cd: /root: No such file or directory'. pwd prints '/'. ls is located in /bin or /usr/bin outside, but inside the jail /bin has bash, so ls outputs 'bin lib64'."
+  },
+  {
+    "id": 50,
+    "question": "Examine this network configuration :\n\n```\nNAME=\"ens4\"\nDEVICE=\"ens4\"\nONBOOT=no\nNETBOOT=yes\nIPV6INIT=yes\nBOOTPROTO=none\nIPADDR=192.168.2.5\nPREFIX=24\nGATEWAY=192.168.2.1\nTYPE=Ethernet\n```\n\nWhich two statements are true after executing: nmcli con mod ens4 ipv4.method auto",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_50_a",
+        "text": "Interface ens4 automatically starts on boot",
+        "is_correct": false
+      },
+      {
+        "id": "opt_50_b",
+        "text": "BOOTPROTO value is set to dhcp",
+        "is_correct": true
+      },
+      {
+        "id": "opt_50_c",
+        "text": "ONBOOT value is set to yes",
+        "is_correct": false
+      },
+      {
+        "id": "opt_50_d",
+        "text": "IPADDR value is considered null.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_50_e",
+        "text": "ONBOOT value is set to dhcp",
+        "is_correct": false
+      },
+      {
+        "id": "opt_50_f",
+        "text": "Interface ens4 is assigned an IP address of 192.168.2.5",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_50_b",
+      "opt_50_d"
+    ],
+    "explanation": "'nmcli con mod ens4 ipv4.method auto' configures the interface to use DHCP, updating BOOTPROTO to dhcp in the ifcfg file (B) and invalidating/clearing static IPADDR settings (D)."
+  },
+  {
+    "id": 51,
+    "question": "Which three are features of the btrfs file system ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 3,
+    "options": [
+      {
+        "id": "opt_51_a",
+        "text": "block devices mirroring",
+        "is_correct": false
+      },
+      {
+        "id": "opt_51_b",
+        "text": "copy-on-write metadata",
+        "is_correct": true
+      },
+      {
+        "id": "opt_51_c",
+        "text": "cluster file system",
+        "is_correct": false
+      },
+      {
+        "id": "opt_51_d",
+        "text": "efficient storage for small files",
+        "is_correct": true
+      },
+      {
+        "id": "opt_51_e",
+        "text": "online resizing",
+        "is_correct": true
+      },
+      {
+        "id": "opt_51_f",
+        "text": "general-purpose volume manager",
+        "is_correct": false
+      },
+      {
+        "id": "opt_51_g",
+        "text": "automatic defragmentation",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_51_b",
+      "opt_51_d",
+      "opt_51_e"
+    ],
+    "explanation": "Key Btrfs features include Copy-on-Write (CoW) metadata/data (B), efficient space-saving packing for small files (D), and online resizing (growing and shrinking while mounted) (E)."
+  },
+  {
+    "id": 52,
+    "question": "Examine this command and output :\n\n```\n$ cat deployment.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx-deployment\nspec:\n  selector:\n    matchLabels:\n      app: nginx\n  replicas: 2\n  template:\n    metadata:\n      labels:\n        app: nginx\n    spec:\n      containers:\n      - name: nginx\n        image: nginx:1.14.2\n        ports:\n        - containerPort: 80\n```\n\nNow examine this command which executes successfully:\n\n```\n$ kubectl create -f deployment.yaml\n```\n\nWhich two statements are true ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_52_a",
+        "text": "The command creates and guarantees the availability of a specified number of identical pods.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_52_b",
+        "text": "The command creates a deployment named nginx.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_52_c",
+        "text": "The command creates a pod named nginx.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_52_d",
+        "text": "The command specifies port 80 as the port that the container exposes.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_52_e",
+        "text": "The command specifies nginx image version 1.14.2 and will fail if the image version is not available.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_52_a",
+      "opt_52_d"
+    ],
+    "explanation": "The deployment manifest defines 'replicas: 2' guaranteeing availability of 2 identical pods (A), and specifies 'containerPort: 80' to expose port 80 from the nginx container (D). available."
+  },
+  {
+    "id": 53,
+    "question": "Examine this command:\n\n```\n# auditctl -w /etc/passwd -p w -k pass\n```\n\nWhich two statements are true upon execution ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_53_a",
+        "text": "A write occurs to /etc/audit/rules.d/audit.rules.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_53_b",
+        "text": "An audit rule is defined that creates a log entry every time /etc/passwd is read.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_53_c",
+        "text": "An audit rule is defined with the keyword pass",
+        "is_correct": true
+      },
+      {
+        "id": "opt_53_d",
+        "text": "An audit rule is defined that creates a log entry every time a write occures to /etc/passwd.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_53_e",
+        "text": "A write occurs to /etc/audit/audit.rules.",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_53_c",
+      "opt_53_d"
+    ],
+    "explanation": "'auditctl -w /etc/passwd -p w -k pass' sets a runtime audit watch on /etc/passwd that logs write operations (-p w) (D) and assigns the filter keyword tag 'pass' (-k pass) (C)."
+  },
+  {
+    "id": 54,
+    "question": "Which two statements are true about removing a physical volume (PV) from a volume:",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_54_a",
+        "text": "It can be removed only after removing it from its VG by using vgreduce",
+        "is_correct": true
+      },
+      {
+        "id": "opt_54_b",
+        "text": "It can be removed when an active VG has mounted file systems by running vgexport",
+        "is_correct": false
+      },
+      {
+        "id": "opt_54_c",
+        "text": "It cannot be removed when it is part of an active VG",
+        "is_correct": false
+      },
+      {
+        "id": "opt_54_d",
+        "text": "It can be removed when an inactive logical volume is on the VG.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_54_e",
+        "text": "It can be removed when it is part of an active VG.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_54_a",
+      "opt_54_e"
+    ],
+    "explanation": "A Physical Volume (PV) can be removed from an active Volume Group (E) as long as extents are evacuated (e.g. with pvmove) and the PV is removed from the VG using 'vgreduce' before running pvremove (A)."
+  },
+  {
+    "id": 55,
+    "question": "The ss command was invoked with options to:\n\n1. limit output to all listening and non-listening tcp ports.\n\n2. display ports instead of the procotols that typically use those ports.\n\n3. display all available internal tcp information.\n\n4. display only connections whose source or destination port is 80.\n\nWhich two results are produced by the command ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_55_a",
+        "text": "UNCONN     0   0    [::1]:323   [::]:*",
+        "is_correct": false
+      },
+      {
+        "id": "opt_55_b",
+        "text": "tcp      CLOSE-WAIT  32   0   server.example.com:44732    12.210.15:https",
+        "is_correct": false
+      },
+      {
+        "id": "opt_55_c",
+        "text": "ESTAB 0   0  10.12.18.92:50384 169.254.169.254:80 cubic wscale:9,7 rto:201",
+        "is_correct": true
+      },
+      {
+        "id": "opt_55_d",
+        "text": "LISTEN  0  511  *:80  *:*  cubic cwnd:10",
+        "is_correct": true
+      },
+      {
+        "id": "opt_55_e",
+        "text": "icmp6    UNCONN  0 0 *:58  *:*",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_55_c",
+      "opt_55_d"
+    ],
+    "explanation": "ss options filtering for TCP traffic on port 80 with numeric ports and internal TCP info will output established connections on port 80 (e.g. 10.12.18.92:50384 -> 169.254.169.254:80 with cubic TCP metrics) (C) and listening sockets on *:80 (D)."
+  },
+  {
+    "id": 56,
+    "question": "Which two statements are true about control groups (cgroups) in Oracle Linux 8 ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_56_a",
+        "text": "Oracle Linux 8 implements cgroups v2 by default.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_56_b",
+        "text": "A cgroup is a collection of processes bound to a set of limits or parameters defined in the cgroups filesystem.",
+        "is_correct": true
+      },
+      {
+        "id": "opt_56_c",
+        "text": "Different controllers from cgroups version 1 and cgroups version 2 cannot be used at one time.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_56_d",
+        "text": "The cgroups filesystem allows limits to be overwritten in the lower levels of the hierarchy.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_56_e",
+        "text": "cgroups allow processes to be organized into hierarchical groups whose resource usage can be limited and monitored",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_56_b",
+      "opt_56_e"
+    ],
+    "explanation": "cgroups organize processes into hierarchical groups with bounded CPU, memory, and I/O resource limits (E). A cgroup binds processes to limits configured in the cgroup pseudo-filesystem hierarchy (B). limited and monitored"
+  },
+  {
+    "id": 57,
+    "question": "Examine this content from /etc/chrony.conf:\n\n….\n\n```\npool pool.ntp.org offline\ndriftfile /var/lib./chrony/drift\nkeyfile /etc/chrony.keys\n```\n\n….\n\nWhich statement is true about pool.ntp.org ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_57_a",
+        "text": "chronyd polls a maximum of 3 sources from pool.ntp.org after it is enabled.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_57_b",
+        "text": "chronyd does not poll pool.ntp.org until it is enabled to do so by chronyd",
+        "is_correct": false
+      },
+      {
+        "id": "opt_57_c",
+        "text": "chronyd takes pool.ntp.org offline automatically when the sending of a request to the pool fails.",
+        "is_correct": false
+      },
+      {
+        "id": "opt_57_d",
+        "text": "chronyd does not poll pool.ntp.org until it is enabled to do so by chronyc.",
+        "is_correct": true
+      }
+    ],
+    "correct_option_ids": [
+      "opt_57_d"
+    ],
+    "explanation": "When 'offline' is appended to a source pool directive in /etc/chrony.conf, chronyd starts with that pool offline and will not poll it until explicitly told to do so via 'chronyc online' (D)."
+  },
+  {
+    "id": 58,
+    "question": "Examine this segment of /etc/rsyslog.conf .\n\n```\n# Log all kernel messages to the console.\n# Logging much else clutters up the screen.\n#kern.* /dev/console\n# Log anything (except mail) of level info or higher.\n# Don't log private authentication messages!\n*.info;mail.none;authpriv.none;cron.none /var/log/messages\n# The authpriv file has restricted access.\nauthpriv.* /var/log/secure\n# Log all the mail messages in one place.\nmail.* - /var/log/maillog\n# Log cron stuff\ncron.* /var/log/cron\n# Everybody gets emergency messages\n*.emerg :omusrmsg:*\n```\n\nNow examine this log file output:\n\nNov 9 20:32:16 server02 sudo[4570]: pam_unix(sudo:session): session opened\n\nopc(uid=0)\n\nNov 9 20:32:17 server02 sudo[4570]: pam_unix(sudo:session): session closed\n\nNov 9 20:32:24 server02 unix_chkpwd[4661]: password check failed for user\n\nNov 9 20:32:24 server02 su[4581]: pam_unix(su:auth): authentication fail\n\nuid=1000 euid=0 tty=pts/0 ruser=opc rhost= user=root\n\nWhich setting enabled the reporting of this log file output ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_58_a",
+        "text": "authpriv.* /var/log/auth",
+        "is_correct": true
+      },
+      {
+        "id": "opt_58_b",
+        "text": "*.emerg *",
+        "is_correct": false
+      },
+      {
+        "id": "opt_58_c",
+        "text": "*.info;mail.none;authpriv.none;cron.none /var/log/messages",
+        "is_correct": false
+      },
+      {
+        "id": "opt_58_d",
+        "text": "#kern.* /dev/sssd/sssd.log",
+        "is_correct": false
+      },
+      {
+        "id": "opt_58_e",
+        "text": "cron.* /var/log/cron",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_58_a"
+    ],
+    "explanation": "The log snippet shows PAM authentication messages (sudo, unix_chkpwd, su:auth), which belong to the 'authpriv' facility. In rsyslog, authentication logs are captured by the 'authpriv.* /var/log/secure' directive (A)."
+  },
+  {
+    "id": 59,
+    "question": "Which two directories store PAM authentication modules ?",
+    "exhibit": null,
+    "type": "multi_choice",
+    "required_selections": 2,
+    "options": [
+      {
+        "id": "opt_59_a",
+        "text": "/lib64/security",
+        "is_correct": true
+      },
+      {
+        "id": "opt_59_b",
+        "text": "/etc/pam.d",
+        "is_correct": false
+      },
+      {
+        "id": "opt_59_c",
+        "text": "/usr/lib",
+        "is_correct": false
+      },
+      {
+        "id": "opt_59_d",
+        "text": "/lib/security",
+        "is_correct": true
+      },
+      {
+        "id": "opt_59_e",
+        "text": "/var/lib",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_59_a",
+      "opt_59_d"
+    ],
+    "explanation": "PAM shared object security modules (.so files) are installed in the standard architecture library directories: /lib64/security (64-bit) (A) and /lib/security (32-bit/symlink) (D)."
+  },
+  {
+    "id": 60,
+    "question": "Examine the access privileges on this directory:\n\n```\ndrwx ------  2 user1 test   4096  Nov  6  10:12  my_directory/\n```\n\nYou must enable another user to read and navigate to my_directory.\n\nWhich command will do this ?",
+    "exhibit": null,
+    "type": "single_choice",
+    "required_selections": 1,
+    "options": [
+      {
+        "id": "opt_60_a",
+        "text": "setfacl --default --modify user:user2:rw- my_directory",
+        "is_correct": false
+      },
+      {
+        "id": "opt_60_b",
+        "text": "setfacl --modify user:user2:r-- my_directory",
+        "is_correct": false
+      },
+      {
+        "id": "opt_60_c",
+        "text": "setfacl -x user:user2 my_directory",
+        "is_correct": false
+      },
+      {
+        "id": "opt_60_d",
+        "text": "setfacl --modify user:user2:r-x my_directory",
+        "is_correct": true
+      },
+      {
+        "id": "opt_60_e",
+        "text": "setfacl --modify group:test:r-- my_directory",
+        "is_correct": false
+      }
+    ],
+    "correct_option_ids": [
+      "opt_60_d"
+    ],
+    "explanation": "To allow a specific user (user2) to read and traverse/navigate a directory, the user requires read ('r') and execute ('x') permissions. The POSIX ACL command is: 'setfacl --modify user:user2:r-x my_directory' (D)."
+  }
+];

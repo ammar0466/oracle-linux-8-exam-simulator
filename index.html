@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ezempro - Oracle Linux 8 Advanced Administration (1Z0-106)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ======================================================================
+       1. AUTHENTICATION GATEWAY (LOGIN / REGISTER)
+       ====================================================================== -->
+  <div id="auth-gate" class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="ezem-logo">
+          <span class="logo-accent">ezem<span class="logo-pro">pro</span></span>
+          <span class="logo-sub">Exam Engine</span>
+        </div>
+        <h2>1Z0-106 Certification Portal</h2>
+        <p class="auth-subtitle">Restricted Access • Internal Certification Practice</p>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="auth-tabs">
+        <button id="tab-login" class="auth-tab-btn active">Sign In</button>
+        <button id="tab-register" class="auth-tab-btn">Register New User</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="form-login" class="auth-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" class="form-input" placeholder="Enter your username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required autocomplete="current-password">
+        </div>
+        <div id="login-error" class="form-error hidden"></div>
+        <button type="submit" class="btn btn-auth">Sign In to Exam Portal</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" class="auth-form hidden">
+        <div class="form-group">
+          <label for="reg-username">Username</label>
+          <input type="text" id="reg-username" class="form-input" placeholder="Choose a username" required minlength="3" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="form-input" placeholder="Set a secure password" required minlength="4" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="reg-secret">Invitation Secret Passcode</label>
+          <input type="text" id="reg-secret" class="form-input" placeholder="Enter organization secret passcode" required>
+          <span class="form-hint">Enter your team secret code to register</span>
+        </div>
+        <div id="reg-error" class="form-error hidden"></div>
+        <button type="submit" class="btn btn-auth">Create User Account</button>
+      </form>
+
+      <div class="auth-footer">
+        <span>Protected Certification Exam Portal • ezempro</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       2. MAIN EXAM APPLICATION (GATED BEHIND AUTH)
+       ====================================================================== -->
+  <div id="app" class="hidden">
+    <!-- Top Header Bar -->
+    <header class="exam-header">
+      <div class="header-left">
+        <div class="ezem-logo">
+          <span class="logo-accent">ezem<span class="logo-pro">pro</span></span>
+          <span class="logo-sub">1Z0-106 Suite</span>
+        </div>
+        <div class="exam-title-badge">
+          <span class="exam-code">1Z0-106</span>
+          <span class="exam-name">Oracle Linux 8 Advanced Administration</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="mode-toggle">
+          <button id="mode-exam-btn" class="mode-btn active" title="Timed exam simulation">Exam Mode</button>
+          <button id="mode-study-btn" class="mode-btn" title="Instant answers & explanations">Practice Mode</button>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="timer-box" id="timer-container">
+          <span class="timer-icon">⏱</span>
+          <span class="timer-label">Time Remaining:</span>
+          <span id="timer-display" class="timer-digits">01:30:00</span>
+        </div>
+
+        <button id="mark-review-btn" class="btn-tool flag-btn" title="Mark this question to review later">
+          <span class="flag-icon">🚩</span>
+          <span id="flag-text">Mark for Review</span>
+        </button>
+
+        <!-- User Profile Dropdown & Controls -->
+        <div class="user-menu-wrap">
+          <button id="btn-user-profile" class="btn-user" title="View your personal stats & mastery">
+            <span class="user-avatar">👤</span>
+            <span id="user-display-name">User</span>
+            <span id="user-role-badge" class="role-badge user">User</span>
+          </button>
+          <button id="btn-admin-panel" class="btn-admin hidden" title="Admin Analytics Dashboard">🛡 Admin</button>
+          <button id="btn-logout" class="btn-logout" title="Sign out">Log Out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub-header Toolbar -->
+    <div class="sub-toolbar">
+      <div class="q-progress-info">
+        <span class="q-num-text">Question <strong id="current-q-num">1</strong> of <strong id="total-q-num">60</strong></span>
+        <span class="progress-bar-wrap">
+          <span id="progress-bar-fill" class="progress-bar-fill" style="width: 1.6%;"></span>
+        </span>
+      </div>
+
+      <div class="toolbar-actions">
+        <!-- Confident Mastery Progress Pill -->
+        <div class="mastery-pill" id="user-mastery-indicator" title="Questions answered correctly 2+ times">
+          <span class="mastery-icon">⭐</span>
+          <span>Confident: <strong id="user-confident-count">0</strong>/60</span>
+        </div>
+
+        <button id="font-decrease" class="btn-text-size" title="Decrease font size">A-</button>
+        <button id="font-increase" class="btn-text-size" title="Increase font size">A+</button>
+        <button id="shuffle-toggle-btn" class="btn-tool" title="Toggle shuffle / sequential order">➡️ Sequential</button>
+        <button id="grid-view-btn" class="btn-tool" title="Open question review grid">☰ Review Screen</button>
+      </div>
+    </div>
+
+    <!-- Main Exam Workspace -->
+    <main class="exam-main" id="exam-main-area">
+      <div class="question-container">
+        <!-- Question Meta & Confidence Badge -->
+        <div class="q-meta-row">
+          <div class="meta-left">
+            <span id="q-type-badge" class="badge badge-multi">Select 2 answers</span>
+            <span id="q-mastery-badge" class="badge badge-mastery hidden">⭐ Confident (2/2 Correct)</span>
+          </div>
+          <span id="q-status-badge" class="badge badge-status">Unanswered</span>
+        </div>
+
+        <!-- Question Prompt Text -->
+        <div class="q-prompt-box">
+          <h2 id="question-text" class="question-text">Loading question...</h2>
+        </div>
+
+        <!-- Exhibit / Terminal Snippet Box (If present) -->
+        <div id="exhibit-wrapper" class="exhibit-wrapper hidden">
+          <div class="exhibit-header">
+            <span class="exhibit-title">Terminal / Exhibit Output</span>
+            <button id="copy-exhibit-btn" class="btn-copy">Copy</button>
+          </div>
+          <pre id="exhibit-content" class="exhibit-content"></pre>
+        </div>
+
+        <!-- Options List -->
+        <div class="options-container">
+          <div class="options-instruction" id="options-instruction-text">
+            Choose the correct option(s):
+          </div>
+          <div id="options-list" class="options-list">
+            <!-- Dynamic Options Rendered Here -->
+          </div>
+        </div>
+
+        <!-- Immediate Explanation Panel (Shown in Study Mode or after submission) -->
+        <div id="explanation-panel" class="explanation-panel hidden">
+          <div class="expl-header">
+            <span id="expl-result-icon">✓</span>
+            <span id="expl-result-title" class="expl-title">Correct Answer Explanation</span>
+          </div>
+          <div id="expl-body" class="expl-body">
+            <!-- Explanation injected dynamically -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation Footer -->
+    <footer class="exam-footer">
+      <div class="footer-left">
+        <button id="btn-grid-modal" class="btn btn-secondary">Review Table</button>
+        <button id="btn-reset" class="btn btn-secondary" title="Restart test with new random seed">Restart</button>
+      </div>
+
+      <div class="footer-center" id="study-controls">
+        <button id="btn-check-answer" class="btn btn-primary btn-check hidden">Check Answer</button>
+      </div>
+
+      <div class="footer-right">
+        <button id="btn-prev" class="btn btn-nav" disabled>◀ Previous</button>
+        <button id="btn-next" class="btn btn-nav">Next ▶</button>
+        <button id="btn-finish" class="btn btn-finish">End Exam</button>
+      </div>
+    </footer>
+
+    <!-- Review Grid Modal -->
+    <div id="review-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Question Review Screen</h3>
+          <button id="close-modal-btn" class="btn-close">✕</button>
+        </div>
+        <div class="modal-summary-stats">
+          <div class="stat-pill"><span class="dot dot-answered"></span> Answered: <strong id="stat-answered">0</strong></div>
+          <div class="stat-pill"><span class="dot dot-unanswered"></span> Unanswered: <strong id="stat-unanswered">60</strong></div>
+          <div class="stat-pill"><span class="dot dot-flagged"></span> Marked for Review: <strong id="stat-flagged">0</strong></div>
+        </div>
+        <div class="modal-body">
+          <div id="questions-grid" class="questions-grid">
+            <!-- 60 question buttons rendered here -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-resume-btn" class="btn btn-secondary">Return to Question</button>
+          <button id="modal-submit-btn" class="btn btn-finish">Submit Final Exam</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Score / Results Screen Modal -->
+    <div id="results-modal" class="modal-backdrop hidden">
+      <div class="modal-card modal-results">
+        <div class="modal-header">
+          <h3>Score Report - Oracle Linux 8 (1Z0-106)</h3>
+        </div>
+        <div class="results-content">
+          <div class="score-circle-wrap">
+            <div id="score-circle" class="score-circle pass">
+              <span id="score-percentage" class="score-percentage">85%</span>
+              <span id="score-status" class="score-status">PASSED</span>
+            </div>
+          </div>
+          
+          <div class="score-details-grid">
+            <div class="score-card">
+              <span class="sc-label">Your Score</span>
+              <span id="res-score" class="sc-val">51 / 60</span>
+            </div>
+            <div class="score-card">
+              <span class="sc-label">Passing Score</span>
+              <span class="sc-val">60% (36 / 60)</span>
+            </div>
+            <div class="score-card">
+              <span class="sc-label">Time Taken</span>
+              <span id="res-time-taken" class="sc-val">42m 15s</span>
+            </div>
+            <div class="score-card">
+              <span class="sc-label">Result Status</span>
+              <span id="res-final-badge" class="sc-badge pass">PASS</span>
+            </div>
+          </div>
+
+          <div class="results-actions">
+            <button id="btn-review-answers" class="btn btn-secondary">Review All Questions</button>
+            <button id="btn-retake-exam" class="btn btn-primary">Retake Exam (Shuffle New)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Profile & Mastery Modal -->
+    <div id="profile-modal" class="modal-backdrop hidden">
+      <div class="modal-card modal-profile">
+        <div class="modal-header">
+          <h3>My Certification Progress & Mastery</h3>
+          <button id="close-profile-btn" class="btn-close">✕</button>
+        </div>
+        <div class="modal-body profile-body">
+          <div class="profile-stats-grid">
+            <div class="stat-box">
+              <span class="stat-num" id="prof-attempts">0</span>
+              <span class="stat-title">Exams Attempted</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num" id="prof-best-score">0%</span>
+              <span class="stat-title">Best Score</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num" id="prof-confident-count">0 / 60</span>
+              <span class="stat-title">Confident (2+ Correct)</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num" id="prof-mastery-pct">0%</span>
+              <span class="stat-title">Question Pool Mastery</span>
+            </div>
+          </div>
+
+          <h4 class="history-title">Recent Exam Attempts</h4>
+          <div id="attempts-history-list" class="attempts-list">
+            <p class="empty-state">No exam attempts recorded yet. Complete an exam to track your score history!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Analytics Dashboard Modal -->
+    <div id="admin-modal" class="modal-backdrop hidden">
+      <div class="modal-card modal-admin">
+        <div class="modal-header">
+          <div class="admin-header-title">
+            <h3>🛡 Admin Analytics Dashboard</h3>
+            <span class="admin-badge">Full Team Progress</span>
+          </div>
+          <button id="close-admin-btn" class="btn-close">✕</button>
+        </div>
+        <div class="modal-body admin-body">
+          <!-- Summary Metrics -->
+          <div class="admin-metrics-grid">
+            <div class="metric-card">
+              <span class="m-val" id="adm-total-users">0</span>
+              <span class="m-label">Registered Candidates</span>
+            </div>
+            <div class="metric-card">
+              <span class="m-val" id="adm-total-exams">0</span>
+              <span class="m-label">Total Exams Completed</span>
+            </div>
+            <div class="metric-card">
+              <span class="m-val" id="adm-avg-score">0%</span>
+              <span class="m-label">Platform Average Score</span>
+            </div>
+            <div class="metric-card">
+              <span class="m-val" id="adm-passed-exams">0</span>
+              <span class="m-label">Passing Attempts (>=60%)</span>
+            </div>
+          </div>
+
+          <!-- User Table -->
+          <h4 class="table-section-title">Candidate Progress & Question Confidence</h4>
+          <div class="table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Role</th>
+                  <th>Total Attempts</th>
+                  <th>Best Score</th>
+                  <th>Avg Score</th>
+                  <th>Confident Qs (≥2x)</th>
+                  <th>Pool Mastery</th>
+                  <th>Last Active</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body">
+                <!-- User rows rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="quiz_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
